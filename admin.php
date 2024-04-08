@@ -54,25 +54,36 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="border-b border-neutral-200">
-                    <td class="p-3 ">1</td>
-                    <td class="p-3">Mark</td>
-                    <td class="p-3">Otto</td>
-                    <td class="p-3">@mdo</td>
-                    <td class="p-3"><img src="https://source.unsplash.com/random/50x50?sig=1" alt=""></td>
-                    <td class="p-3"><input type="file" id="imageBefore" name="imageBefore" class="hidden" />
-                        <label for="imageBefore"
-                            class=" cursor-pointer p-3  text-xs font-bold uppercase transition-all hover:bg-black hover:text-white ">Фото
-                            после</label>
-                    </td>
-                    <td>
-                        <select name="status" id="">
-                            <option value="1">Новая</option>
-                            <option value="2">Решено</option>
-                            <option value="3">Отменено</option>
-                        </select>
-                    </td>
-                </tr>
+                <?php
+                require_once './utils/connect.php';
+
+                $sql = "SELECT application.*, category.name 
+                FROM application 
+                INNER JOIN category ON application.category_id = category.id";
+                $result = $conn->query($sql);
+
+                while ($row = $result->fetch_assoc()) {
+                    $id = $row['id'];
+                    $created_at = $row['created_at'];
+                    $title = $row['title'];
+                    $description = $row['description'];
+                    $category_name = $row['name'];
+                    $status = $row['status'];
+                    echo "<tr class='border-b border-neutral-200'> ";
+                    echo "<td class='p-3'>$created_at</td>";
+                    echo "<td class='p-3'>$title</td>";
+                    echo "<td class='p-3'>$description</td>";
+                    echo "<td class='p-3'>$category_name</td>";
+                    echo "<td class='p-3'>$status</td>";
+                    echo "<td>
+                    <a
+                    onclick='return confirm(`Вы действительно хотите удалить?`)'
+                        href='./actions/application/delete.php?id={$id}'
+                        class='select-none bg-white p-3  text-xs font-bold uppercase transition-all hover:bg-black hover:text-white '>Удалить</a>
+                </td>";
+                    echo "</tr>";
+                }
+                ?>
             </tbody>
         </table>
     </main>

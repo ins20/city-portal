@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 07 2024 г., 21:10
+-- Время создания: Апр 08 2024 г., 06:16
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `application` (
-  `id` char(32) NOT NULL,
+  `id` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `title` text NOT NULL,
   `description` text NOT NULL,
   `category_id` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `imageBefore` blob NOT NULL,
-  `imageAfter` blob,
+  `imageBefore` mediumblob NOT NULL,
+  `imageAfter` mediumblob,
   `reason` text,
   `user_id` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -51,14 +51,6 @@ CREATE TABLE `category` (
   `id` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Дамп данных таблицы `category`
---
-
-INSERT INTO `category` (`id`, `name`) VALUES
-('f439e33f-f506-11ee-a2ad-708bcdaba73d', 'Снег'),
-('f61c3d39-f506-11ee-a2ad-708bcdaba73d', 'Мусор');
 
 -- --------------------------------------------------------
 
