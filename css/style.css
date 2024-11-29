@@ -1,0 +1,33 @@
+.solved-request {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.request-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.solved-request:hover .image-before {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.solved-request:hover .image-after {
+  opacity: 0;
+}
+
+.solved-counter {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
